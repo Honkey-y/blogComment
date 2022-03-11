@@ -1,0 +1,21 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /springboot_day5
+    jsp:
+      init-parameters:
+        development: true  #??JSP????
+
+
+spring:
+  mvc:
+    view:
+      prefix: /     #??????
+      suffix: .jsp  #??????
+
+# ????
+logging:
+  level:
+    root: info
+    com.example: debug #???????debug??
+
