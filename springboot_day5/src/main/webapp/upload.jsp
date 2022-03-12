@@ -11,7 +11,7 @@
 <body>
 
     <h1>测试文件上传</h1>
-    <form action="${pageContext.request.contextPath}/file/upload" method="post" enctype="multipart/form-data">
+    <form action="${pageContext.request.contextPath}/file/uploadByJarDeploy" method="post" enctype="multipart/form-data">
 
         <input type="file" name="file">
         <input type="submit" value="上传文件">
