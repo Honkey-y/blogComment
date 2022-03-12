@@ -1,21 +1,33 @@
 server:
   port: 8082
   servlet:
-    context-path: /springboot_day5
+    context-path: /springboot_day5  #项目路径
     jsp:
       init-parameters:
-        development: true  #??JSP????
+        development: true  #开启JSP开发模式
 
 
 spring:
   mvc:
     view:
-      prefix: /     #??????
-      suffix: .jsp  #??????
+      prefix: /     #视图前缀
+      suffix: .jsp  #视图后缀
 
-# ????
+  servlet:
+    multipart:      #修改文件上传的大小限制
+      max-file-size: 120MB      #运行服务器可执行文件的最大文件大小
+      max-request-size: 120MB  #运行请求传递文件大小最大
+
+  #指定文件上传的位置
+  profiles:
+    active: dev
+
+#调整日志
 logging:
   level:
     root: info
-    com.example: debug #???????debug??
+    com.example: debug #日志输出级别调整为debug级
+
+#指定文件上传的位置
+
 
