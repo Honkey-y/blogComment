@@ -17,6 +17,29 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 @Controller
 @RequestMapping("file")
 public class FileController {
+    
+    @Value("${file.upload.dir}")
+    private String realpath;
+
+    /*
+    * 第二种上传方式
+    * 注意：这种方式适用于任何一种部署方式，推荐使用
+    * */
+    @RequestMapping("uploadByJarDeploy")
+    public String uploadByJarDeploy(MultipartFile file) throws IOException {
+        //文件名
+        String originalFilename = file.getOriginalFilename();
+        log.println("文件名：" + file.getOriginalFilename());
+        log.println("文件大小：" + file.getSize());
+        log.println("文件类型：" + file.getContentType());
+
+        //改名
+        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));       //找到最后的（.） 截断文件名
+        String NewFileName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + ext;
+        file.transferTo(new File(realpath,NewFileName));
+
+        return "redirect:/upload.jsp";
+    }
 
     /*
     * 用来测试文件上传
